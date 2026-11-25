@@ -21,15 +21,15 @@ export default function AnnouncementCard({ item: itemProp, hideStatus = false, h
   const category = item.category ?? item.kategori;
 
   return (
-    <article className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm shadow-slate-200/50">
+    <article className="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_2px_10px_-4px_rgba(15,31,61,0.06)] transition hover:border-blue-300">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           {category ? (
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-700">
+            <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-blue-700">
               {category}
             </p>
           ) : null}
-          <h3 className="break-words text-sm font-semibold leading-6 text-slate-900">
+          <h3 className="break-words text-base font-bold leading-6 text-[#0f1f3d]">
             {href ? (
               <Link href={href} className="hover:text-blue-700 hover:underline">
                 {title}
@@ -38,11 +38,11 @@ export default function AnnouncementCard({ item: itemProp, hideStatus = false, h
               title
             )}
           </h3>
-          <p className="mt-1 text-sm leading-6 text-slate-600">{summary}</p>
+          <p className="mt-1.5 text-sm leading-6 text-slate-600">{summary}</p>
         </div>
         {hideStatus ? null : <StatusBadge status={status} />}
       </div>
-      <p className="mt-4 text-xs text-slate-500">{date}</p>
+      <p className="mt-auto pt-4 text-xs font-medium text-slate-500">{date}</p>
     </article>
   );
 }

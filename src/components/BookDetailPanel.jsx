@@ -6,7 +6,7 @@ import { formatRupiah } from "@/lib/format";
 export default function BookDetailPanel({ b }) {
   if (!b) {
     return (
-      <p className="text-sm text-[#cad5e6]">Pilih sebuah buku untuk melihat detailnya.</p>
+      <p className="text-sm text-slate-200">Pilih sebuah buku untuk melihat detailnya.</p>
     );
   }
 
@@ -19,48 +19,48 @@ export default function BookDetailPanel({ b }) {
 
   return (
     <>
-      <p className="text-[10px] font-bold uppercase tracking-[1.7px] text-[#adbed9]">Detail buku</p>
+      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-200">Detail buku</p>
       <BookCover
         src={b.cover_url}
         judul={b.judul}
         id={b.id}
-        className="mx-auto mb-[18px] mt-[26px] w-3/4 max-w-[165px] rounded shadow-[5px_7px_10px_#08172d] max-[640px]:max-w-[110px]"
+        className="mx-auto mb-5 mt-6 w-3/4 max-w-[165px] rounded-lg shadow-[0_12px_24px_-8px_rgba(0,0,0,0.5)] max-[640px]:max-w-[110px]"
       />
-      <h2 className="my-2 font-serif text-[26px] font-semibold leading-tight">{b.judul}</h2>
-      <p className="text-[13px] text-[#cad5e6]">{b.pengarang}</p>
+      <h2 className="my-2 text-2xl font-extrabold leading-tight tracking-tight text-white">{b.judul}</h2>
+      <p className="text-sm text-slate-200">{b.pengarang}</p>
 
-      <div className="my-[22px] flex justify-around gap-2 border-y border-[#40516d] py-[13px] text-[13px]">
+      <div className="my-5 flex justify-around gap-2 border-y border-white/15 py-3.5 text-sm font-semibold text-white">
         <span>
           {b.tahun_terbit}
-          <small className="mt-1 block text-[10px] text-[#aec1dc]">Tahun</small>
+          <small className="mt-1 block text-[11px] font-medium text-blue-200">Tahun</small>
         </span>
         <span>
           {b.stok_tersedia}
-          <small className="mt-1 block text-[10px] text-[#aec1dc]">Stok</small>
+          <small className="mt-1 block text-[11px] font-medium text-blue-200">Stok</small>
         </span>
         <span>
-          {b.rating ? `★ ${b.rating}` : "—"}
-          <small className="mt-1 block text-[10px] text-[#aec1dc]">Rating</small>
+          {b.rating ? `★ ${b.rating}` : "-"}
+          <small className="mt-1 block text-[11px] font-medium text-blue-200">Rating</small>
         </span>
       </div>
 
-      <p className="text-left text-[10px] font-bold uppercase tracking-[1.7px] text-[#adbed9]">Informasi</p>
-      <dl className="mx-auto mb-5 mt-2 max-w-[450px] space-y-1.5 text-left text-[13px] text-[#dce4ef]">
+      <p className="text-left text-[11px] font-bold uppercase tracking-[0.16em] text-blue-200">Informasi</p>
+      <dl className="mx-auto mb-6 mt-2.5 max-w-[450px] space-y-2 text-left text-[13px] text-slate-100">
         <div className="flex justify-between gap-3">
-          <dt className="text-[#aec1dc]">Kategori</dt>
-          <dd className="text-right">{b.kategori}</dd>
+          <dt className="text-blue-200">Kategori</dt>
+          <dd className="text-right font-medium">{b.kategori}</dd>
         </div>
         {info.map(([k, v]) => (
           <div key={k} className="flex justify-between gap-3">
-            <dt className="text-[#aec1dc]">{k}</dt>
-            <dd className="break-all text-right">{v}</dd>
+            <dt className="text-blue-200">{k}</dt>
+            <dd className="break-all text-right font-medium">{v}</dd>
           </div>
         ))}
       </dl>
 
       <Link
         href={`/buku/${b.id}`}
-        className="block w-full rounded-[7px] bg-[#3869e0] p-[11px] text-center font-semibold !text-white hover:bg-[#2f5bc7]"
+        className="flex min-h-[44px] w-full items-center justify-center rounded-xl bg-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold !text-white transition hover:bg-[#1d4ed8]"
       >
         {b.stok_tersedia > 0 ? "Lihat detail & ajukan pinjam" : "Lihat detail & reservasi"}
       </Link>

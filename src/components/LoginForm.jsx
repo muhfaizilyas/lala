@@ -12,7 +12,7 @@ export default function LoginForm() {
   return (
     <form action={formAction} className="mt-8 space-y-4" noValidate>
       {state.message ? (
-        <p role="alert" className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {state.message}
         </p>
       ) : null}
@@ -38,7 +38,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-2xl bg-slate-900 px-4 py-3.5 font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+        className="min-h-[44px] w-full rounded-xl bg-[#0f1f3d] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#172d54] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {pending ? "Memproses..." : "Masuk"}
       </button>

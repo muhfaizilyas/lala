@@ -1,36 +1,7 @@
+/* Halaman login dan daftar. Warna panel, kartu, dan tombol diatur lewat kelas
+   Tailwind di page.jsx, jadi di sini cukup latar halaman saja. */
 .rb-auth {
-  --sage: #c9cfb4;
-  --muted-ink: #49574b;
-  --card: #fffdf7;
-  --color-slate-950: var(--pine);
-  --color-slate-900: var(--ink);
-  --color-slate-800: var(--ink);
-  --color-slate-700: #344735;
-  --color-slate-600: var(--muted-ink);
-  --color-slate-500: #536452;
-  --color-slate-400: #64725f;
-  --color-slate-300: #e2e8d8;
-  --color-slate-200: var(--line);
-  --color-slate-100: #f3f2e7;
-  --color-sky-50: #eef1e6;
-  --color-sky-100: #dce4d3;
-  --color-sky-200: #e1e8d8;
-  --color-sky-400: #526e55;
-  --color-sky-600: #385b46;
-  --color-sky-700: #294d3b;
-  --color-sky-800: var(--pine);
   background: var(--latar);
   color: var(--ink);
   color-scheme: light;
 }
-.rb-auth > div { background: #f1efe2; border-color: var(--line); }
-.rb-auth section:first-child { background: var(--pine); color: var(--paper); }
-.rb-auth section:first-child h1 { color: var(--paper); }
-.rb-auth section:first-child a > span:first-child { background: var(--sage); color: var(--pine); box-shadow: none; }
-.rb-auth section:last-child > div { background: var(--card); }
-.rb-auth form input { background-color: #fffef9; }
-.rb-auth form button[type='submit'] { background: var(--pine); color: var(--paper); }
-.rb-auth form button[type='submit']:not(:disabled):hover { background: #2e5745; }
-.rb-auth :is(a,button,input):focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
-.rb-auth section:first-child a:focus-visible { outline-color: var(--sage); }
-.rb-auth section:last-child a:hover { color: var(--pine); text-decoration: underline; text-underline-offset: .2em; }

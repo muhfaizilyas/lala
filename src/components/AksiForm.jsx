@@ -3,10 +3,10 @@
 import { useActionState } from "react";
 
 const GAYA = {
-  primary: "bg-sky-600 !text-white hover:bg-sky-700",
+  primary: "bg-blue-600 !text-white hover:bg-blue-700",
   success: "bg-emerald-600 !text-white hover:bg-emerald-700",
   danger: "bg-rose-600 !text-white hover:bg-rose-700",
-  dark: "bg-slate-900 !text-white hover:bg-slate-800",
+  dark: "bg-[#0f1f3d] !text-white hover:bg-[#172d54]",
   neutral: "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
 };
 

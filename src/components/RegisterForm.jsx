@@ -71,11 +71,11 @@ export default function RegisterForm() {
       </div>
 
       <div className="sm:col-span-2">
-        <div className="mb-4 flex items-start gap-3 rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3">
-          <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-sky-100 text-xs font-bold text-sky-700">
+        <div className="mb-4 flex items-start gap-3 rounded-xl border border-blue-100 bg-blue-50 px-4 py-3">
+          <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
             i
           </span>
-          <p className="text-xs leading-5 text-sky-800">
+          <p className="text-xs leading-5 text-blue-900">
             Pendaftaran ini khusus mahasiswa. Peran akun akan ditetapkan otomatis
             sebagai <strong>Mahasiswa</strong> oleh sistem.
           </p>
@@ -83,7 +83,7 @@ export default function RegisterForm() {
         <button
           type="submit"
           disabled={pending}
-          className="w-full rounded-2xl bg-slate-950 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="min-h-[44px] w-full rounded-xl bg-[#0f1f3d] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#172d54] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {pending ? "Mendaftarkan..." : "Daftar"}
         </button>

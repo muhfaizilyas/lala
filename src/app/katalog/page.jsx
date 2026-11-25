@@ -21,7 +21,7 @@ const URUTAN = {
   tahun: "b.tahun_terbit DESC, b.judul",
   rating: "rating DESC NULLS LAST, b.judul",
 };
-const LABEL_URUTAN = { judul: "A–Z", tahun: "Terbaru", rating: "Rating" };
+const LABEL_URUTAN = { judul: "A-Z", tahun: "Terbaru", rating: "Rating" };
 
 const KOLOM = `b.id, b.judul, b.isbn, b.pengarang, b.penerbit, b.tahun_terbit,
                ${SQL_STOK_BEBAS} AS stok_tersedia, b.durasi_maks_pinjam, b.denda_per_hari, b.cover_url,
@@ -73,10 +73,10 @@ export default async function KatalogPage({ searchParams }) {
   const konteks = { q: keyword, kategori: kategoriId, sort: urutan };
 
   const chip = (aktif) =>
-    `rounded-full border px-3 py-1.5 text-xs ${
+    `inline-flex min-h-[36px] items-center rounded-full border px-3.5 py-1.5 text-xs transition ${
       aktif
-        ? "border-[#e8efff] bg-[#e8efff] font-semibold text-[#2453bd]"
-        : "border-[#dce1eb] bg-white hover:bg-[#f4f5f9]"
+        ? "border-blue-200 bg-blue-50 font-semibold text-blue-700"
+        : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
     }`;
 
   return (
@@ -90,52 +90,57 @@ export default async function KatalogPage({ searchParams }) {
         </DetailScroll>
       }
     >
-      <p className="text-[10px] font-bold uppercase tracking-[1.7px] text-[#69758b]">Perpustakaan digital</p>
-      <h1 className="my-1.5 text-[clamp(25px,3vw,38px)] font-bold tracking-[-0.04em]">Jelajahi buku</h1>
-      <p className="mb-5 leading-relaxed text-[#667185]">
-        Temukan bacaan berikutnya untuk menemani harimu.
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">Perpustakaan digital</p>
+      <h1 className="my-1.5 text-[clamp(26px,3vw,36px)] font-extrabold tracking-tight text-[#0f1f3d]">Jelajahi buku</h1>
+      <p className="mb-5 leading-relaxed text-slate-600">
+        Temukan bacaan berikutnya dan klik buku untuk melihat ringkasan di panel detail.
       </p>
 
       <form
         method="GET"
         action="/katalog"
         role="search"
-        className="mb-7 flex items-center gap-2.5 rounded-xl border border-[#e3e6ed] bg-white px-3.5 py-2.5 focus-within:border-[#5789ed] focus-within:ring-4 focus-within:ring-[#e4ecff]"
+        className="mb-7 flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-xs focus-within:border-blue-600 focus-within:ring-4 focus-within:ring-blue-100"
       >
         {kategoriId ? <input type="hidden" name="kategori" value={kategoriId} /> : null}
         {urutan !== "judul" ? <input type="hidden" name="sort" value={urutan} /> : null}
-        <button type="submit" aria-label="Cari" className="text-[#4b5870]">
+        <label htmlFor="katalog-search" className="sr-only">
+          Cari judul, pengarang, atau kategori
+        </label>
+        <button type="submit" aria-label="Cari" className="text-slate-500 hover:text-[#0f1f3d]">
           <Ikon nama="search" />
         </button>
         <input
+          id="katalog-search"
           type="search"
           name="q"
           defaultValue={keyword}
-          aria-label="Cari judul, pengarang, atau kategori"
           placeholder="Cari judul, pengarang, atau kategori..."
-          className="w-full min-w-0 bg-transparent text-sm outline-none"
+          className="w-full min-w-0 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
         />
       </form>
 
       {!keyword && rekomendasi.length > 0 ? (
-        <section className="mb-7">
-          <div className="flex items-center justify-between gap-2">
-            <h2 className="my-3 text-[19px] font-bold tracking-tight">Rekomendasi</h2>
-            <span className="text-[11px] text-[#647089]">Paling sering dipinjam</span>
+        <section className="mb-8">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <h2 className="text-lg font-bold tracking-tight text-[#0f1f3d]">Rekomendasi</h2>
+            <span className="text-xs font-medium text-slate-500">Paling sering dipinjam</span>
           </div>
-          <div className="grid grid-cols-3 gap-[7px] min-[641px]:gap-[13px]">
+          <div className="grid grid-cols-3 gap-2.5 min-[641px]:gap-3.5">
             {rekomendasi.map((b) => (
               <Link
                 key={b.id}
                 scroll={false}
                 href={buatHref({ ...konteks, pilih: b.id })}
-                className={`block min-w-0 rounded-[10px] border bg-white p-1.5 text-left min-[641px]:p-[9px] ${
-                  detail?.id === b.id ? "border-[#456ee0]" : "border-[#e3e6ed]"
+                className={`block min-w-0 rounded-xl border bg-white p-2 text-left transition min-[641px]:p-3 ${
+                  detail?.id === b.id
+                    ? "border-blue-600 ring-2 ring-blue-100"
+                    : "border-slate-200 hover:border-blue-300"
                 }`}
               >
-                <BookCover src={b.cover_url} judul={b.judul} id={b.id} className="w-full" />
-                <b className="mb-0.5 mt-2 block text-xs min-[641px]:text-sm">{b.judul}</b>
-                <small className="block text-[11px] text-[#637084]">{b.pengarang}</small>
+                <BookCover src={b.cover_url} judul={b.judul} id={b.id} className="w-full rounded-lg" />
+                <b className="mb-0.5 mt-2.5 block text-xs font-bold text-[#0f1f3d] min-[641px]:text-sm">{b.judul}</b>
+                <small className="block text-[11px] text-slate-600">{b.pengarang}</small>
               </Link>
             ))}
           </div>
@@ -143,13 +148,13 @@ export default async function KatalogPage({ searchParams }) {
       ) : null}
 
       <section>
-        <div className="flex items-center justify-between gap-2">
-          <h2 className="my-3 text-[19px] font-bold tracking-tight">Katalog buku</h2>
-          <span className="text-[11px] text-[#647089]">{buku.length} judul</span>
+        <div className="mb-3 flex items-center justify-between gap-2">
+          <h2 className="text-lg font-bold tracking-tight text-[#0f1f3d]">Katalog buku</h2>
+          <span className="text-xs font-medium text-slate-500">{buku.length} judul</span>
         </div>
 
-        <div className="mb-3 flex flex-wrap items-center gap-1.5" aria-label="Urutan">
-          <span className="mr-1 text-[11px] text-[#647089]">Urutkan:</span>
+        <div className="mb-4 flex flex-wrap items-center gap-2" aria-label="Urutan">
+          <span className="mr-1 text-xs font-medium text-slate-500">Urutkan:</span>
           {Object.entries(LABEL_URUTAN).map(([kunci, label]) => (
             <Link
               key={kunci}
@@ -163,33 +168,35 @@ export default async function KatalogPage({ searchParams }) {
         </div>
 
         {buku.length === 0 ? (
-          <p className="rounded-lg bg-white p-3.5">Tidak ada buku yang cocok.</p>
+          <p className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
+            Tidak ada buku yang cocok dengan pencarian Anda.
+          </p>
         ) : (
-          <div className="overflow-hidden rounded-lg border border-[#e6e9ef]">
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             {buku.map((b) => (
               <Link
                 key={b.id}
                 scroll={false}
                 href={buatHref({ ...konteks, pilih: b.id })}
-                className={`flex items-center gap-3 border-b border-[#e6e9ef] px-[13px] py-2.5 last:border-b-0 ${
-                  detail?.id === b.id ? "bg-[#f3f6ff]" : "bg-white hover:bg-[#fafbfe]"
+                className={`flex items-center gap-3.5 border-b border-slate-200 px-4 py-3 transition last:border-b-0 ${
+                  detail?.id === b.id ? "bg-blue-50/75" : "bg-white hover:bg-slate-50"
                 }`}
               >
-                <BookCover src={b.cover_url} judul={b.judul} id={b.id} compact className="w-[34px] shrink-0" />
+                <BookCover src={b.cover_url} judul={b.judul} id={b.id} compact className="w-[38px] shrink-0 rounded" />
                 <span className="min-w-0">
-                  <b className="block text-sm">{b.judul}</b>
-                  <small className="mt-0.5 block text-[11px] text-[#637084]">{b.pengarang}</small>
+                  <b className="block text-sm font-bold text-[#0f1f3d]">{b.judul}</b>
+                  <small className="mt-0.5 block text-xs text-slate-600">{b.pengarang}</small>
                 </span>
                 <span className="ml-auto flex shrink-0 flex-col items-end gap-1 sm:flex-row sm:items-center sm:gap-2">
-                  {b.rating ? <span className="text-[11px] font-medium text-amber-600">★ {b.rating}</span> : null}
+                  {b.rating ? <span className="text-xs font-semibold text-amber-700">★ {b.rating}</span> : null}
                   <span
-                    className={`rounded-full px-2 py-1 text-[10px] ${
-                      b.stok_tersedia > 0 ? "bg-[#edf6f0] text-[#336546]" : "bg-rose-50 text-rose-700"
+                    className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${
+                      b.stok_tersedia > 0 ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"
                     }`}
                   >
                     {b.stok_tersedia > 0 ? `Stok ${b.stok_tersedia}` : "Habis"}
                   </span>
-                  <span className="hidden rounded-full bg-[#eef1f7] px-2 py-1 text-[10px] text-[#4b5870] sm:inline">
+                  <span className="hidden rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-700 sm:inline">
                     {b.kategori}
                   </span>
                 </span>

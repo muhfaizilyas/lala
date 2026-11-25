@@ -49,16 +49,16 @@ export default async function DetailPengumumanPage({ params }) {
       subtitle="Informasi resmi dari perpustakaan kampus."
     >
       <div className="mx-auto max-w-3xl space-y-6">
-        <Link href="/pengumuman" className="text-sm font-semibold text-sky-600 hover:text-sky-700">
+        <Link href="/pengumuman" className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800 hover:underline">
           &larr; Semua pengumuman
         </Link>
 
-        <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs sm:p-8">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-sky-700">{p.kategori}</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-blue-700">{p.kategori}</span>
             {p.status !== "Published" ? <StatusBadge status={p.status} /> : null}
           </div>
-          <h1 className="mt-3 break-words text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">{p.judul}</h1>
+          <h1 className="mt-3 break-words text-2xl font-extrabold tracking-tight text-[#0f1f3d] sm:text-3xl">{p.judul}</h1>
           <p className="mt-2 text-sm text-slate-500">
             Dirilis {formatTanggal(p.tanggal)}
             {p.penulis ? ` · oleh ${p.penulis}` : ""}

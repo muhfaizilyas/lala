@@ -28,7 +28,7 @@ export default function FormField({
         required={required}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={errorId}
-        className={`w-full rounded-2xl border bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 ${error ? "border-rose-400" : "border-slate-200"}`}
+        className={`w-full rounded-xl border bg-white px-4 py-3 text-sm text-slate-900 shadow-xs outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 ${error ? "border-rose-400" : "border-slate-200"}`}
       />
       {helperText && !error ? (
         <p className="mt-1.5 text-xs text-slate-500">{helperText}</p>

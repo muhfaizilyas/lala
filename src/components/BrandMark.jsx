@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Ikon from "@/components/Ikon";
 
 export default function BrandMark({
   href = "/",
@@ -11,29 +12,33 @@ export default function BrandMark({
   return (
     <Link
       href={href}
-      aria-label="RakBaca - Perpustakaan Kampus"
+      aria-label="RakBaca, Perpustakaan Kampus"
       className={`group inline-flex items-center gap-3 ${className}`}
     >
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-cyan-500 text-lg font-black text-white shadow-lg shadow-blue-500/25">
-        R
+      <span
+        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl transition ${
+          inverse
+            ? "bg-white/15 text-white ring-1 ring-white/25 group-hover:bg-white/25"
+            : "bg-[#0f1f3d] text-white group-hover:bg-[#1d4ed8]"
+        }`}
+      >
+        <Ikon nama="book" />
       </span>
       {!compact ? (
         <span className="flex flex-col leading-tight">
           <span
-            className={`text-sm font-semibold uppercase tracking-[0.24em] ${
-              inverse ? "text-slate-300" : "text-slate-500"
+            className={`text-base font-extrabold tracking-tight ${
+              inverse ? "text-white" : "text-[#0f1f3d] group-hover:text-[#1d4ed8]"
             }`}
           >
             RakBaca
           </span>
           <span
-            className={`text-sm font-semibold ${
-              inverse
-                ? "text-white group-hover:text-sky-200"
-                : "text-slate-900 group-hover:text-blue-700"
+            className={`text-[11px] font-semibold uppercase tracking-[0.14em] ${
+              inverse ? "text-blue-200" : "text-slate-500"
             }`}
           >
-            Perpustakaan Kampus
+            Digital Library
           </span>
         </span>
       ) : null}

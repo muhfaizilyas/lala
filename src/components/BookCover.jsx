@@ -4,10 +4,10 @@ import { useState } from "react";
 
 // Warna cadangan untuk sampul yang belum punya gambar (mengikuti palet desain).
 const PALET = [
-  { bg: "#1b3358", fg: "#f4ecd8" },
-  { bg: "#c4562e", fg: "#f8eedd" },
-  { bg: "#e8b44c", fg: "#2a1d08" },
-  { bg: "#7ba08a", fg: "#10241a" },
+  { bg: "#0f1f3d", fg: "#f8fafc" },
+  { bg: "#1d4ed8", fg: "#eff6ff" },
+  { bg: "#1e293b", fg: "#f1f5f9" },
+  { bg: "#334155", fg: "#f8fafc" },
 ];
 
 // Sampul buku rasio 0.68. Jika src kosong atau gagal dimuat, tampil blok warna
@@ -25,7 +25,7 @@ export default function BookCover({ src, judul = "", id = 0, compact = false, cl
     >
       {!tampilGambar && !compact ? (
         <span
-          className="absolute inset-0 flex items-center justify-center p-[10%] text-center font-serif font-semibold leading-tight"
+          className="absolute inset-0 flex items-center justify-center p-[10%] text-center font-bold leading-tight tracking-tight"
           style={{ fontSize: "13cqw" }}
         >
           {judul}
